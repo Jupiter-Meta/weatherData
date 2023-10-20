@@ -16,12 +16,12 @@ collection = db['weather']
 
 def fetch_weather_data():
     try:
-        print("Weather")
+        # print("Weather")
         response = requests.get(api_weather)
         weatherData = response.json()
         print(weatherData)
         print( )
-        print("AQI")
+        # print("AQI")
         response2 = requests.get(api_aqi)
         aqiData = response2.json()
         print(aqiData)
@@ -30,7 +30,7 @@ def fetch_weather_data():
         print(data)
         
         if response.status_code == 200:
-            return weatherData
+            return data
         else:
             print(f"Error: {data['message']}")
             return None
@@ -38,12 +38,12 @@ def fetch_weather_data():
         print(f"An error occurred: {str(e)}")
         return None
 
-def save_to_mongodb(weather_data):
+def save_to_mongodb(data):
     if weather_data:
-        collection.insert_one(weather_data)
+        collection.insert_one(data)
         print("Weather data saved to MongoDB.")
 
 if __name__ == "__main__":
-    weather_data = fetch_weather_data()
-    # if weather_data:
-    #     save_to_mongodb(weather_data)
+    data = fetch_weather_data()
+    if data:
+        save_to_mongodb(data)
