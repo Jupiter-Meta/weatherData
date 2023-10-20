@@ -39,7 +39,7 @@ def fetch_weather_data():
         return None
 
 def save_to_mongodb(data):
-    if weather_data:
+    if data:
         collection.insert_one(data)
         print("Weather data saved to MongoDB.")
 
