@@ -21,10 +21,10 @@ def fetch_weather_data():
         weatherData = response.json()
         print(weatherData)
         print( )
-        print(AQI)
+        print("AQI")
         response2 = requests.get(api_aqi)
         aqiData = response.json()
-        print("aqiData")
+        print(aqiData)
         
         
         if response.status_code == 200:
