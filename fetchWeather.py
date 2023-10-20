@@ -16,10 +16,12 @@ collection = db['weather']
 
 def fetch_weather_data():
     try:
+        print(Weather)
         response = requests.get(api_weather)
         weatherData = response.json()
         print(weatherData)
-
+        print( )
+        print(AQI)
         response2 = requests.get(api_aqi)
         aqiData = response.json()
         print(aqiData)
