@@ -16,7 +16,7 @@ collection = db['weather']
 
 def fetch_weather_data():
     try:
-        print(Weather)
+        print("Weather")
         response = requests.get(api_weather)
         weatherData = response.json()
         print(weatherData)
@@ -24,7 +24,7 @@ def fetch_weather_data():
         print(AQI)
         response2 = requests.get(api_aqi)
         aqiData = response.json()
-        print(aqiData)
+        print("aqiData")
         
         
         if response.status_code == 200:
