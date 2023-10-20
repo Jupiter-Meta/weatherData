@@ -26,7 +26,7 @@ def fetch_weather_data():
         aqiData = response2.json()
         print(aqiData)
 
-        data = {'temp':weatherData[main][temp]}
+        data = {'temp':weatherData{main}{temp}}
         print(data)
         
         if response.status_code == 200:
