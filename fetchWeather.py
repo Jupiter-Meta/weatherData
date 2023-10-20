@@ -25,7 +25,9 @@ def fetch_weather_data():
         response2 = requests.get(api_aqi)
         aqiData = response2.json()
         print(aqiData)
-        
+
+        data = {'temp':weatherData[main][temp]}
+        print(data)
         
         if response.status_code == 200:
             return weatherData
