@@ -23,7 +23,7 @@ def fetch_weather_data():
         print( )
         print("AQI")
         response2 = requests.get(api_aqi)
-        aqiData = response.json()
+        aqiData = response2.json()
         print(aqiData)
         
         
