@@ -1,9 +1,8 @@
 #!/bin/python3
 import requests
 import pymongo,time
-
+from config import api_key
 # OpenWeatherAPI configuration
-api_key = 'a1ce3564a0ea8c3c2bb353c83bc683a0'
 lat = 17.4345706  # Replace with the city you want to fetch weather data for
 lon = 78.3738571
 api_weather = "http://api.openweathermap.org/data/2.5/weather?lat="+str(lat)+"&lon="+str(lon)+"&appid=eb370f9ef90cb3375bb7c497f844f0c5&units=metric"
