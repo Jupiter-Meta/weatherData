@@ -13,6 +13,18 @@ mongo_client = pymongo.MongoClient('mongodb://localhost:27017/')
 db = mongo_client['jm']
 collection = db['weather']
 
+def cloudiness_to_lux(cloudiness_percent):
+    # Maximum illuminance for clear daylight conditions (adjust as needed)
+    max_illuminance = 100000  # lux
+
+    # Calculate the reduction in illuminance based on cloudiness percentage
+    reduction_factor = cloudiness_percent / 100.0
+
+    # Calculate the lux value
+    lux = max_illuminance * reduction_factor
+
+    return lux
+
 def fetch_weather_data():
     try:
         # print("Weather")
@@ -25,7 +37,8 @@ def fetch_weather_data():
         aqiData = response2.json()
         print(aqiData)
 
-        data = {'fetchTime':round(time.time()), 'lastUpdate':weatherData['dt'], 'lat':weatherData['coord']['lat'], 'lon':weatherData['coord']['lon'],'location':weatherData['name'], 'temp':weatherData['main']['temp'],'humidity':weatherData['main']['humidity'], 'aqi':aqiData['list'][0]['main']['aqi'], 'co':aqiData['list'][0]['components']['co'], 'no':aqiData['list'][0]['components']['no'], 'no2':aqiData['list'][0]['components']['no2'], 'o3':aqiData['list'][0]['components']['o3'], 'so2':aqiData['list'][0]['components']['so2'], 'pm2_5':aqiData['list'][0]['components']['pm2_5'], 'pm10':aqiData['list'][0]['components']['pm10'], 'nh3':aqiData['list'][0]['components']['nh3'] }
+        data = {'fetchTime':round(time.time()), 'lastUpdate':weatherData['dt'], 'lat':weatherData['coord']['lat'], 'lon':weatherData['coord']['lon'],'location':weatherData['name'], 'luminosity': cloudiness_to_lux(weatherData['clouds']['all']) 'temp':weatherData['main']['temp'],'humidity':weatherData['main']['humidity'], 'aqi':aqiData['list'][0]['main']['aqi'], 'co':aqiData['list'][0]['components']['co'], 'no':aqiData['list'][0]['components']['no'], 'no2':aqiData['list'][0]['components']['no2'], 'o3':aqiData['list'][0]['components']['o3'], 'so2':aqiData['list'][0]['components']['so2'], 'pm2_5':aqiData['list'][0]['components']['pm2_5'], 'pm10':aqiData['list'][0]['components']['pm10'], 'nh3':aqiData['list'][0]['components']['nh3'] }
+        
         print(data)
         
         if response.status_code == 200:
